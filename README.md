@@ -7,6 +7,7 @@ This is a fully functional Jenkins server
 
 # Build
 
+Linux
 ```
 docker build \
   --build-arg docker_gid=$(stat -c '%g' /var/run/docker.sock) \
@@ -16,6 +17,7 @@ docker build \
 
 # Usage
 
+Linux
 ```
 docker run \
   -p 8080:8080 \
