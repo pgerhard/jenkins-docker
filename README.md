@@ -8,16 +8,21 @@ This is a fully functional Jenkins server
 # Build
 
 ```
-docker build jenkins-docker --tag srempfer/jenkins
+docker build \
+  --build-arg docker_gid=$(stat -c '%g' /var/run/docker.sock) \
+  --tag srempfer/jenkins \
+  jenkins-docker
 ```
 
 # Usage
 
 ```
-docker run -p 8080:8080 \
+docker run \
+  -p 8080:8080 \
   -e JENKINS_USER=admin \
   -e JENKINS_PASS=admin \
   -v jenkins_home:/var/jenkins_home \
+  -v /var/run/docker.sock:/var/run/docker.sock \
   srempfer/jenkins
 ```
 
